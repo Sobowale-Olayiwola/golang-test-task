@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/url"
 	"testing"
 	"time"
 
@@ -57,11 +56,6 @@ func TestCreateMessage(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			form := url.Values{}
-			form.Add("sender", tt.sender)
-			form.Add("receiver", tt.receiver)
-			form.Add("message", tt.message)
-
 			payload := fmt.Sprintf(`{
 				"sender":   "%s",
 				"receiver": "%s",

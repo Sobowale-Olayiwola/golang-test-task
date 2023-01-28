@@ -11,7 +11,8 @@ import (
 	"twitch_chat_analysis/internal/data/mocks"
 )
 
-// Create a newTestApplication helper which returns an instance of our // application struct containing mocked dependencies.
+// Create a newTestApplication helper which returns an instance of our
+// application struct containing mocked dependencies.
 func newTestApplication(t *testing.T) *application {
 	return &application{
 		models: data.Models{
@@ -25,15 +26,14 @@ type testServer struct {
 	*httptest.Server
 }
 
-// Create a newTestServer helper which initalizes and returns a new instance // of our custom testServer type.
+// Create a newTestServer helper which initalizes and returns a new instance
+// of our custom testServer type.
 func newTestServer(t *testing.T, h http.Handler) *testServer {
 	ts := httptest.NewServer(h)
 	return &testServer{ts}
 }
 
-// Create a postForm method for sending POST requests to the test server. The
-// final parameter to this method is a url.Values object which can contain any
-// form data that you want to send in the request body.
+// Create a post method for sending POST requests to the test server.
 func (ts *testServer) post(t *testing.T, urlPath string, payload string) (int, http.Header, string) {
 	rs, err := ts.Client().Post(ts.URL+urlPath, "application/json", strings.NewReader(payload))
 	if err != nil {
